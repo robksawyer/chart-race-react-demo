@@ -1,19 +1,18 @@
 /**
  * @file App.js
  */
-import React from 'react';
-import BarChart from 'chart-race-react';
+import React from 'react'
+import BarChart from 'chart-race-react'
 
-import logo from './logo.svg';
-import './App.css';
+import logo from './logo.svg'
 
-import data from './data';
+import data from './data'
 
 // Local components
-// import BarChart from './components/BarChart';
+// import BarChart from './components/BarChart'
 
 const randomColor = () => {
-  return `rgb(${255 * Math.random()}, ${255 * Math.random()}, ${255})`;
+  return `rgb(${255 * Math.random()}, ${255 * Math.random()}, ${255})`
 }
 
 const len = data[Object.keys(data)[0]].length;
@@ -52,7 +51,7 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <div className="container">
+      <div className="container text-sans px-40 mx-auto my-40">
         <BarChart
           start={true}
           data={data}
