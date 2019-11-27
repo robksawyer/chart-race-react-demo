@@ -2,14 +2,14 @@
  * @file App.js
  */
 import React from 'react'
-import BarChart from 'chart-race-react'
+// import BarChart from 'chart-race-react'
 
 import logo from './logo.svg'
 
 import data from './data'
 
 // Local components
-// import BarChart from './components/BarChart'
+import BarChart from './components/BarChart'
 
 const randomColor = () => {
   return `rgb(${255 * Math.random()}, ${255 * Math.random()}, ${255})`

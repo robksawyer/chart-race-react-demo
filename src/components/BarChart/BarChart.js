@@ -12,21 +12,21 @@ const classes = {
 }
 class BarChart extends React.Component {
     constructor(props){
-        super(props);
-        this.barHeight = `calc(${props.barStyle.height} + ${props.barStyle.marginTop})`;
-        this.nItmes = Object.keys(this.props.data).length;
-        this.maxItems = props.maxItems <= this.nItmes ? props.maxItems : this.nItmes;
-        this.barChartStyle = {
-            height: `calc(${this.maxItems} * ${this.barHeight})`,
-        };
-        let [initRank, maxVal] = this.sortAxis(0);
-        this.state = {
-            idx: 0,
-            prevRank: initRank,
-            currRank: initRank,
-            maxVal: maxVal,
-            started: props.start
-        };
+      super(props);
+      this.barHeight = `calc(${props.barStyle.height} + ${props.barStyle.marginTop})`;
+      this.nItmes = Object.keys(this.props.data).length;
+      this.maxItems = props.maxItems <= this.nItmes ? props.maxItems : this.nItmes;
+      this.barChartStyle = {
+        height: `calc(${this.maxItems} * ${this.barHeight})`,
+      };
+      let [initRank, maxVal] = this.sortAxis(0);
+      this.state = {
+        idx: 0,
+        prevRank: initRank,
+        currRank: initRank,
+        maxVal: maxVal,
+        started: props.start
+      };
     }
 
     componentDidMount = () => {
@@ -53,30 +53,30 @@ class BarChart extends React.Component {
         return;
       }
       this.setState(prevState => {
-            let [currRank, maxVal] = this.sortAxis(prevState.idx + 1);
-            return {
-                idx: prevState.idx + 1,
-                prevRank: prevState.currRank,
-                currRank: currRank,
-                maxVal: maxVal,
-            }
-        });
+          let [currRank, maxVal] = this.sortAxis(prevState.idx + 1);
+          return {
+            idx: prevState.idx + 1,
+            prevRank: prevState.currRank,
+            currRank: currRank,
+            maxVal: maxVal,
+          }
+      });
     }
 
     sortAxis = (i, descending) => {
-        if(descending === undefined) descending = true;
-        let toSort = Object.keys(this.props.data).map(name => {
-            return {
-                name: name,
-                val: this.props.data[name][i]
-            };
-        });
-        toSort.sort((left, right) => descending ? left.val < right.val : left.val > right.val);
-        toSort = toSort.slice(0, this.maxItems);
-        const maxVal = Math.max.apply(Math, toSort.map(item => item.val));
-        return [toSort.reduce((ret, item, idx) => ({
-          ...ret, ...{[item.name]: idx}
-        }), {}), maxVal];
+      if(descending === undefined) descending = true;
+      let toSort = Object.keys(this.props.data).map(name => {
+          return {
+              name: name,
+              val: this.props.data[name][i]
+          };
+      });
+      toSort.sort((left, right) => descending ? left.val < right.val : left.val > right.val);
+      toSort = toSort.slice(0, this.maxItems);
+      const maxVal = Math.max.apply(Math, toSort.map(item => item.val));
+      return [toSort.reduce((ret, item, idx) => ({
+        ...ret, ...{[item.name]: idx}
+      }), {}), maxVal];
     }
 
     getInfoFromRank = name => {
